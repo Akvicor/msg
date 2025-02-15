@@ -1,0 +1,25 @@
+.login-container {
+  width: 350px;
+  border: 1px solid #EAEAEA;
+  margin: 180px auto;
+  padding: 35px 35px 15px 35px;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 0 25px #CAC6C6;
+  box-sizing: border-box;
+}
+
+.login-container .login-title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #505458;
+  font-size: 20px;
+}
+
+.login-container .el-input {
+  width: 198px;
+}
+
+.login-container .login-button {
+  text-align: center;
+}
