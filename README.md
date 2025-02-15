@@ -7,6 +7,11 @@
 - [x] Email SMTP/IMAP
 - [x] Telegram Bot
 
+## 配套工具
+
+- 命令行快速发消息工具 [https://github.com/Akvicor/msg-cmd](https://github.com/Akvicor/msg-cmd)
+- Go快速调用Mod: [https://github.com/Akvicor/gmsg](https://github.com/Akvicor/gmsg)
+
 ## 编译
 
 - Go 22
