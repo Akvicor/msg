@@ -7,6 +7,8 @@
 - [x] Email SMTP/IMAP
 - [x] Telegram Bot
 
+[博客链接 https://blog.akvicor.com/posts/project/msg/](https://blog.akvicor.com/posts/project/msg/)
+
 ## 配套工具
 
 - 命令行快速发消息工具 [https://github.com/Akvicor/msg-cmd](https://github.com/Akvicor/msg-cmd)
