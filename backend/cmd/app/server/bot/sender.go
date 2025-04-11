@@ -20,20 +20,28 @@ type SenderCommon interface {
 }
 
 type SenderModel struct {
+	ready *sync.WaitGroup
 	bot   *Model
 	queue *queueModel
 	new   chan struct{}
 }
 
 func newSender() *SenderModel {
-	return &SenderModel{
+	item := &SenderModel{
+		ready: &sync.WaitGroup{},
 		bot:   Bot,
 		queue: nil,
 		new:   make(chan struct{}, 4),
 	}
+	item.ready.Add(1)
+	return item
 }
 
 var Sender = newSender()
+
+func (b *SenderModel) Wait() {
+	b.ready.Wait()
+}
 
 func (b *SenderModel) Run(wg *sync.WaitGroup, ctx context.Context) {
 	defer wg.Done()
@@ -45,6 +53,7 @@ func (b *SenderModel) Run(wg *sync.WaitGroup, ctx context.Context) {
 	}
 	b.queue = queue
 
+	b.ready.Done()
 	b.bot.Wait()
 
 	bwg := &sync.WaitGroup{}
@@ -119,11 +128,11 @@ func (b *SenderModel) Run(wg *sync.WaitGroup, ctx context.Context) {
 	}
 }
 
-func (b *SenderModel) Send(uid int64, channelID int64, sendAt int64, ip string, cType send.Type, title string, msg string) (int64, error) {
+func (b *SenderModel) Send(uid int64, channelID, scheduleID int64, sendAt int64, ip string, cType send.Type, title string, msg string) (int64, error) {
 	defer func() {
 		b.new <- struct{}{}
 	}()
-	item, err := b.queue.PushNew(uid, channelID, sendAt, ip, cType, title, msg)
+	item, err := b.queue.PushNew(uid, channelID, scheduleID, sendAt, ip, cType, title, msg)
 	if err != nil {
 		return 0, err
 	}

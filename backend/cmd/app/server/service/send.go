@@ -31,8 +31,8 @@ func (l *sendService) FindByUID(alive bool, preload *model.PreloaderSend, uid, i
 }
 
 // Create 保存通知渠道
-func (l *sendService) Create(readyAt, sendAt int64, uid, channelID int64, ip string, cType send.Type, title, msg string) (send *model.Send, err error) {
-	send = model.NewSend(readyAt, sendAt, 0, uid, channelID, ip, cType, title, msg)
+func (l *sendService) Create(readyAt, sendAt int64, uid, channelID, scheduleID int64, ip string, cType send.Type, title, msg string) (send *model.Send, err error) {
+	send = model.NewSend(readyAt, sendAt, 0, uid, channelID, scheduleID, ip, cType, title, msg)
 	err = repository.Send.Create(context.Background(), send)
 	if err != nil {
 		return nil, err

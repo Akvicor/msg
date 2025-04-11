@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"msg/cmd/app/server/app/dro"
 	"msg/cmd/app/server/bot"
+	"msg/cmd/app/server/common/period"
 	"msg/cmd/app/server/common/resp"
 	"msg/cmd/app/server/common/types/channel"
 	"msg/cmd/app/server/common/types/role"
@@ -24,6 +25,10 @@ func (a *typeApi) ChannelType(c echo.Context) (err error) {
 
 func (a *typeApi) SendType(c echo.Context) (err error) {
 	return resp.SuccessWithData(c, send.AllType)
+}
+
+func (a *typeApi) PeriodType(c echo.Context) (err error) {
+	return resp.SuccessWithData(c, period.AllType)
 }
 
 func (a *typeApi) BotSenders(c echo.Context) (err error) {

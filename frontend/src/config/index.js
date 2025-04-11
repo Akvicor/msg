@@ -15,6 +15,13 @@ const config = [
     icon: 'SendOutlined'
   },
   {
+    path: '/schedule',
+    name: 'schedule',
+    label: '日程提醒',
+    role: 'viewer',
+    icon: 'ScheduleOutlined'
+  },
+  {
     path: '/send',
     name: 'send',
     label: '消息历史',

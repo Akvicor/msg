@@ -184,18 +184,18 @@ const AccessToken = () => {
         )
       }
       <Table
-          columns={columns}
-          dataSource={tableData}
-          pagination={{
-            pageSizeOptions: [10, 15, 20, 50, 100],
-            responsive: true,
-            showQuickJumper: true,
-            showSizeChanger: true
-          }}
-          scroll={{
-            x: 'max-content',
-          }}
-          rowKey={'id'}
+        columns={columns}
+        dataSource={tableData}
+        pagination={{
+          pageSizeOptions: [10, 15, 20, 50, 100],
+          responsive: true,
+          showQuickJumper: true,
+          showSizeChanger: true
+        }}
+        scroll={{
+          x: 'max-content',
+        }}
+        rowKey={'id'}
       />
       <Modal
         title={inputAccessTokenDataAction === 'create' ? '创建' : inputAccessTokenDataAction === 'update' ? '编辑' : 'Unknown'}

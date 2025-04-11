@@ -26,23 +26,23 @@ const Main = () => {
             minHeight: '100vh',
           }}
         >
-            <CommonSider collapsed={collapsed} mode={mode}/>
-            <Layout style={{
-              // width: 'fit-content'
-            }}>
-              <Content
-                style={{
-                  margin: '16px 16px',
-                  padding: 24,
-                  minHeight: '89vh',
-                  background: colorBgContainer,
-                  borderRadius: borderRadiusLG,
-                }}
-              >
-                <Outlet/>
-              </Content>
-              <CommonFooter/>
-            </Layout>
+          <CommonSider collapsed={collapsed} mode={mode}/>
+          <Layout style={{
+            // width: 'fit-content'
+          }}>
+            <Content
+              style={{
+                margin: '16px 16px',
+                padding: 24,
+                minHeight: '89vh',
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}
+            >
+              <Outlet/>
+            </Content>
+            <CommonFooter/>
+          </Layout>
 
         </Layout>
       </Layout>

@@ -6,5 +6,5 @@ import (
 
 var list = []any{
 	&model.User{}, &model.UserAccessToken{}, &model.LoginLog{}, &model.UserBindHomeTips{},
-	&model.Channel{}, &model.Send{},
+	&model.Channel{}, &model.Schedule{}, &model.Send{},
 }

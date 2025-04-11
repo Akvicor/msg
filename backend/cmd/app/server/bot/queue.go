@@ -166,9 +166,9 @@ func (q *queueModel) Push(item *model.Send) {
 	heap.Push(q.queue, newQueueHeapItem(item))
 }
 
-func (q *queueModel) PushNew(uid, channelID int64, sendAt int64, ip string, cType send.Type, title, msg string) (*model.Send, error) {
+func (q *queueModel) PushNew(uid, channelID, scheduleID int64, sendAt int64, ip string, cType send.Type, title, msg string) (*model.Send, error) {
 	// 写入数据库
-	item, err := service.Send.Create(time.Now().Unix(), sendAt, uid, channelID, ip, cType, title, msg)
+	item, err := service.Send.Create(time.Now().Unix(), sendAt, uid, channelID, scheduleID, ip, cType, title, msg)
 	if err != nil {
 		return nil, err
 	}

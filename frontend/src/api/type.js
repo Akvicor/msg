@@ -24,6 +24,14 @@ export const typeSendTypeFind = (params) => {
   })
 }
 
+export const typePeriodTypeFind = (params) => {
+  return http.request({
+    url: '/type/period/type',
+    method: 'get',
+    params
+  })
+}
+
 export const typeBotSendersFind = (params) => {
   return http.request({
     url: '/type/bot/senders',

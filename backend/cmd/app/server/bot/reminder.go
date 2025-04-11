@@ -8,6 +8,7 @@ import (
 	"msg/cmd/app/server/bot/wechat"
 	"msg/cmd/app/server/common/types/channel"
 	"msg/cmd/app/server/common/types/send"
+	"msg/cmd/app/server/common/utils"
 	"msg/cmd/app/server/model"
 	"msg/cmd/app/server/service"
 	"msg/cmd/config"
@@ -128,7 +129,6 @@ func (b *reminderBot) wechatReceiver(toUserName, fromUsername, createTime, msgTy
 	}()
 	if rContent == "" {
 		rBuilder := strings.Builder{}
-		rBuilder.WriteString("Tips")
 		rBuilder.WriteString(fmt.Sprintf("\nTODO :|: %s 00:00:00 :|: 内容", time.Now().Format("2006-01-02")))
 		rBuilder.WriteString(fmt.Sprintf("\nTODO :|: CANCEL :|: 序号"))
 		rContent = rBuilder.String()
@@ -165,7 +165,10 @@ func (b *reminderBot) wechatReceiverTodo(fromChannel *model.Channel, args []stri
 		return fmt.Sprintf("[%s] is not valid time", timeStr)
 	}
 
-	sendId, err := Sender.Send(fromChannel.UID, fromChannel.ID, targetTime.Unix(), "", send.TypeTextCard, content, timeStr)
+	sendId, err := Sender.Send(fromChannel.UID, fromChannel.ID, 0, targetTime.Unix(), "", send.TypeTextCard, content, timeStr)
+	if err != nil {
+		return fmt.Sprintf("Todo send failed: %v", err)
+	}
 
-	return fmt.Sprintf("Todo [%d] send at [%s]", sendId, targetTime.Format(time.DateTime))
+	return fmt.Sprintf("Todo [%d] send at [%s], [%s] from now", sendId, targetTime.Format(time.DateTime), utils.FormatSecond(targetTime.Unix()-time.Now().Unix(), 2))
 }

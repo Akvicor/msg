@@ -8,6 +8,7 @@ import Login from '../pages/login'
 import {AdminAuth, RouterAuth, UserAuth, ViewerAuth} from './routerAuth'
 import UserCenter from "../pages/userCenter";
 import AccessToken from "../pages/accessToken";
+import Schedule from "../pages/schedule";
 
 
 const routes = [
@@ -26,6 +27,10 @@ const routes = [
       {
         path: 'channel',
         element: (<ViewerAuth><Channel/></ViewerAuth>)
+      },
+      {
+        path: 'schedule',
+        element: (<ViewerAuth><Schedule/></ViewerAuth>)
       },
       {
         path: 'send',

@@ -252,18 +252,18 @@ const User = () => {
         )
       }
       <Table
-          columns={columns}
-          scroll={{
-            x: 'max-content',
-          }}
-          dataSource={tableData}
-          pagination={{
-            pageSizeOptions: [10, 15, 20, 50, 100],
-            responsive: true,
-            showQuickJumper: true,
-            showSizeChanger: true
-          }}
-          rowKey={'id'}
+        columns={columns}
+        scroll={{
+          x: 'max-content',
+        }}
+        dataSource={tableData}
+        pagination={{
+          pageSizeOptions: [10, 15, 20, 50, 100],
+          responsive: true,
+          showQuickJumper: true,
+          showSizeChanger: true
+        }}
+        rowKey={'id'}
       />
       <Modal
         title={inputUserDataAction === 'create' ? '创建' : inputUserDataAction === 'update' ? '编辑' : 'Unknown'}

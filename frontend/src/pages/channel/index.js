@@ -273,7 +273,7 @@ const Channel = () => {
             <Button type="primary" style={{marginRight: '5px'}}
                     onClick={() => handleInputChannelDataShow('update', rowData)}>编辑</Button>
             <Popconfirm
-              title={'删除银行'}
+              title={'删除通知渠道'}
               description={"你确定删除" + rowData.name + "?"}
               onConfirm={() => handleDeleteChannel(rowData.id)}
               onCancel={() => {

@@ -170,7 +170,7 @@ func (a *channelApi) Send(c echo.Context) (err error) {
 	if err != nil || userChannel == nil {
 		return resp.FailWithMsg(c, resp.Failed, fmt.Sprintf("找不到渠道: %v", err))
 	}
-	_, err = bot.Sender.Send(user.ID, userChannel.ID, input.At, c.RealIP(), input.Type, input.Title, input.Msg)
+	_, err = bot.Sender.Send(user.ID, userChannel.ID, 0, input.At, c.RealIP(), input.Type, input.Title, input.Msg)
 	if err != nil {
 		return resp.FailWithMsg(c, resp.Failed, fmt.Sprintf("发送失败: %v", err))
 	}

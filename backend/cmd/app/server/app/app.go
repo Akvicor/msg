@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"msg/cmd/app/server/bot"
 	"msg/cmd/app/server/global/auth"
+	"msg/cmd/app/server/schedule"
 	"os"
 	"os/signal"
 	"sync"
@@ -16,8 +17,9 @@ import (
 var app *App
 
 type App struct {
-	Cron   gocron.Scheduler
-	Server *echo.Echo
+	Cron     gocron.Scheduler
+	Schedule *schedule.Schedule
+	Server   *echo.Echo
 }
 
 func newApp() *App {
@@ -53,6 +55,14 @@ func Run() error {
 	// Sender
 	wg.Add(1)
 	go bot.Sender.Run(wg, ctx)
+
+	// Schedule
+	app.Schedule = schedule.NewSchedule()
+	go func() {
+		bot.Bot.Wait()
+		bot.Sender.Wait()
+		app.Schedule.Run(wg, ctx)
+	}()
 
 	// Server
 	app.Server = echo.New()

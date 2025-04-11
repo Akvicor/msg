@@ -73,7 +73,7 @@ func (a *sendApi) Send(c echo.Context) (err error) {
 	if err != nil {
 		return resp.FailWithMsg(c, resp.Failed, fmt.Sprintf("find channel failed: %v", err))
 	}
-	id, err := bot.Sender.Send(user.ID, channel.ID, input.At, c.RealIP(), input.Type, input.Title, input.Msg)
+	id, err := bot.Sender.Send(user.ID, channel.ID, 0, input.At, c.RealIP(), input.Type, input.Title, input.Msg)
 	if err != nil {
 		return resp.FailWithMsg(c, resp.Failed, fmt.Sprintf("find channel failed: %v", err))
 	}

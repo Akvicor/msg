@@ -113,12 +113,12 @@ const UserCenter = () => {
   return (
     <div>
       <Table
-          columns={columns}
-          scroll={{
-            x: 'max-content',
-          }}
-          dataSource={tableData}
-          rowKey={'id'}
+        columns={columns}
+        scroll={{
+          x: 'max-content',
+        }}
+        dataSource={tableData}
+        rowKey={'id'}
       />
       <Modal
         title={inputUserDataAction === 'create' ? '创建' : inputUserDataAction === 'update' ? '编辑' : 'Unknown'}

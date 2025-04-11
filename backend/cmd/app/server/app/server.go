@@ -74,6 +74,7 @@ func runServer(wg *sync.WaitGroup, e *echo.Echo) {
 		apiGroupPublic.GET("/type/role/type", api.Type.RoleType, mw.NewIPLimiter(3, 3))
 		apiGroupPublic.GET("/type/channel/type", api.Type.ChannelType, mw.NewIPLimiter(3, 3))
 		apiGroupPublic.GET("/type/send/type", api.Type.SendType, mw.NewIPLimiter(3, 3))
+		apiGroupPublic.GET("/type/period/type", api.Type.PeriodType, mw.NewIPLimiter(3, 3))
 		apiGroupPublic.GET("/type/bot/senders", api.Type.BotSenders, mw.NewIPLimiter(3, 3))
 	}
 
@@ -115,11 +116,23 @@ func runServer(wg *sync.WaitGroup, e *echo.Echo) {
 	{
 		apiGroupAuth.POST("/channel/create", api.Channel.Create, mw.NewIPLimiter(1, 1))
 		apiGroupAuth.GET("/channel/find", api.Channel.Find, mw.NewIPLimiter(3, 3))
-		apiGroupAuth.POST("/channel/update", api.Channel.Update, mw.NewIPLimiter(3, 3))
+		apiGroupAuth.POST("/channel/update", api.Channel.Update, mw.NewIPLimiter(1, 1))
 		apiGroupAuth.POST("/channel/delete", api.Channel.Delete, mw.NewIPLimiter(1, 1))
 		apiGroupAuth.GET("/channel/test", api.Channel.Test, mw.NewIPLimiter(1, 1))
 		apiGroupAuth.GET("/channel/send", api.Channel.Send)
 		apiGroupAuth.POST("/channel/send", api.Channel.Send)
+	}
+
+	// 循环提醒
+	{
+		apiGroupAuth.POST("/schedule/create", api.Schedule.Create, mw.NewIPLimiter(1, 1))
+		apiGroupAuth.GET("/schedule/find", api.Schedule.Find, mw.NewIPLimiter(3, 3))
+		apiGroupAuth.POST("/schedule/update", api.Schedule.Update, mw.NewIPLimiter(1, 1))
+		apiGroupAuth.POST("/schedule/update/next", api.Schedule.UpdateNext, mw.NewIPLimiter(1, 1))
+		apiGroupAuth.POST("/schedule/update/sequence", api.Schedule.UpdateSequence, mw.NewIPLimiter(3, 3))
+		apiGroupAuth.POST("/schedule/disable", api.Schedule.Disable, mw.NewIPLimiter(1, 1))
+		apiGroupAuth.POST("/schedule/enable", api.Schedule.Enable, mw.NewIPLimiter(1, 1))
+		apiGroupAuth.POST("/schedule/delete", api.Schedule.Delete, mw.NewIPLimiter(1, 1))
 	}
 
 	// 发送通知

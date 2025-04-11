@@ -1,0 +1,16 @@
+export const PeriodTypeSecond = 1  // 每秒
+export const PeriodTypeMinute = 2  // 每分钟
+export const PeriodTypeHour = 3  // 每小时
+export const PeriodTypeDaily = 4  // 每天
+export const PeriodTypeWeekly = 5  // 每周
+export const PeriodTypeMonthly = 6  // 每月
+export const PeriodTypeQuarterly = 7  // 每季度
+export const PeriodTypeYearly = 8  // 每年
+export const PeriodTypeSecondInterval = 9  // 间隔秒
+export const PeriodTypeMinuteInterval = 10 // 间隔分钟
+export const PeriodTypeHourInterval = 11 // 间隔小时
+export const PeriodTypeDayInterval = 12 // 间隔天
+export const PeriodTypeWeekInterval = 13 // 间隔周
+export const PeriodTypeMonthInterval = 14 // 间隔月
+export const PeriodTypeQuarterInterval = 15 // 间隔季度
+export const PeriodTypeYearInterval = 16 // 间隔年
