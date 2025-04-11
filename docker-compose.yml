@@ -1,6 +1,6 @@
 services:
   msg:
-    image: akvicor/msg:v0.1.6
+    image: akvicor/msg:v0.1.7
     restart: always
     volumes:
       - /path/to/msg/data/msg-data:/data
