@@ -82,7 +82,9 @@ func (u *scheduleRepository) Create(c context.Context, schedule *model.Schedule)
 
 // Update 更新
 func (u *scheduleRepository) Update(c context.Context, alive bool, schedule *model.Schedule) error {
-	return u.WrapResultErr(u.alive(c, alive).Where("uid = ? AND id = ?", schedule.UID, schedule.ID).UpdateColumns(schedule))
+	tx := u.alive(c, alive).Select("*")
+	omits := []string{"ID", "UID", "Created", "Sequence", "Disabled", "User", "Channel"}
+	return u.WrapResultErr(tx.Omit(omits...).Where("uid = ? AND id = ?", schedule.UID, schedule.ID).Updates(schedule))
 }
 
 // UpdateNext 更新名称
