@@ -26,8 +26,9 @@ func loadSqlite() {
 	var d *gorm.DB
 	dsn := fmt.Sprintf("file:%s?cache=shared&mode=rwc", config.Global.Database.File)
 	d, err = gorm.Open(sqlite.Open(dsn), &gorm.Config{
-		Logger:                 logMode,
-		SkipDefaultTransaction: true,
+		Logger:                                   logMode,
+		SkipDefaultTransaction:                   true,
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 
 	if err != nil {
@@ -54,8 +55,9 @@ func createSqlite() (exist bool) {
 	var d *gorm.DB
 	dsn := fmt.Sprintf("file:%s?cache=shared&mode=rwc", config.Global.Database.File)
 	d, err = gorm.Open(sqlite.Open(dsn), &gorm.Config{
-		Logger:                 logMode,
-		SkipDefaultTransaction: true,
+		Logger:                                   logMode,
+		SkipDefaultTransaction:                   true,
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 
 	if err != nil {

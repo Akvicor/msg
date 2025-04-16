@@ -116,12 +116,14 @@ func (m *IMAPModel) Listen(wg *sync.WaitGroup, ctx context.Context) {
 		case <-ctx.Done(): // 主动关闭
 			m.kill <- struct{}{}
 			err = <-m.done
-			_ = c.Logout()
+			if c != nil {
+				_ = c.Logout()
+			}
 			closeChan()
 			return
 		case err = <-m.done:
 			isInit := errors.Is(err, errInit)
-			if !isInit {
+			if !isInit && c != nil {
 				_ = c.Logout()
 			}
 			var baseSeq uint32

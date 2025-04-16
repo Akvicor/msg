@@ -33,8 +33,9 @@ func loadPostgres() {
 
 	dsn = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=Asia/Shanghai", host, port, username, password, dbname)
 	d, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger:                 logMode,
-		SkipDefaultTransaction: true,
+		Logger:                                   logMode,
+		SkipDefaultTransaction:                   true,
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
 		glog.Fatal("连接数据库异常: %v", err)
@@ -87,8 +88,9 @@ func createPostgres() (exist bool) {
 
 	dsn = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=Asia/Shanghai", host, port, username, password, dbname)
 	d, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger:                 logMode,
-		SkipDefaultTransaction: true,
+		Logger:                                   logMode,
+		SkipDefaultTransaction:                   true,
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
 		glog.Fatal("连接数据库异常: %v", err)
