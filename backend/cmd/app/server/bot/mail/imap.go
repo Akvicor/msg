@@ -131,10 +131,10 @@ func (m *IMAPModel) Listen(wg *sync.WaitGroup, ctx context.Context) {
 			if err != nil {
 				glog.Warning("Bot Maid Mail Receiver Connect Failed: %v", err)
 				time.Sleep(3 * time.Second)
-				m.done <- err
+				m.done <- errInit
 			}
-			glog.Warning("Bot Maid Mail Receiver Connect Successful: init[%v]", isInit)
-			if isInit {
+			if isInit && err == nil {
+				glog.Warning("Bot Maid Mail Receiver Connect Successful: init[%v]", isInit)
 				m.inboxMessagesHandled.Store(baseSeq)
 				m.status.Store(status.SenderStatusOK)
 			}
