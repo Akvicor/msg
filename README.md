@@ -9,6 +9,11 @@
 
 [博客链接 https://blog.akvicor.com/posts/project/msg/](https://blog.akvicor.com/posts/project/msg/)
 
+## 默认用户名及密码
+
+- 用户名: `admin`
+- 密码: `password`
+
 ## 配套工具
 
 - 命令行快速发消息工具 [https://github.com/Akvicor/msg-cmd](https://github.com/Akvicor/msg-cmd)
